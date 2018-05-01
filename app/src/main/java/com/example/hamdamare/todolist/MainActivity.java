@@ -7,6 +7,8 @@ package com.example.hamdamare.todolist;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<String> arrayadapter;
     private Object view;
     Dialog myDialog;
+    private String detailssentback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         ListView listviewtodo = (ListView) findViewById(R.id.sub_list);
         listviewtodo.setAdapter(arrayadapter);
 
+        myDialog = new Dialog(MainActivity.this);
 
 
         //context menu appears here when an item in the list is pressed on
@@ -91,6 +96,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+   // public void showPopUp(View v) {
+
+     //   myDialog.setContentView(R.layout.popupdescription);
+    //}
+
+
 
     //if edit navigate back to AddToDO and user can edit input
     @Override
@@ -119,8 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         if(item.getTitle().equals("Details")) {
-                myDialog.setContentView(R.layout.popupdescription);
-
+               showPopUp();
         }
 
 
@@ -143,18 +153,33 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         String namesentback = data.getStringExtra("name");
-        String detailssentback = data.getStringExtra("details");
+        detailssentback = data.getStringExtra("details");
         arraylist.add(namesentback);
-        System.out.println(namesentback);
+        arrayadapter.notifyDataSetChanged();
 
+
+
+    }
+
+
+
+    public void showPopUp() {
         LayoutInflater layout = (LayoutInflater) getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = layout.inflate(R.layout.popupdescription, null);
         TextView tv = (TextView) popupView.findViewById(R.id.textView);
         tv.setText(detailssentback);
-
         arrayadapter.notifyDataSetChanged();
 
+        myDialog.setContentView(R.layout.popupdescription);
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        System.out.print("dss");
+        myDialog.show();
+
+
+
+
     }
+
 
 
     //saving userdata when they exit app
