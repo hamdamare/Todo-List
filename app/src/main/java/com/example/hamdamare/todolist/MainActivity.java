@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private Object view;
     Dialog myDialog;
     private String detailssentback;
+    private String namesentback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        String namesentback = data.getStringExtra("name");
+        namesentback = data.getStringExtra("name");
         detailssentback = data.getStringExtra("details");
         arraylist.add(namesentback);
         arrayadapter.notifyDataSetChanged();
@@ -164,19 +165,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void showPopUp() {
-        LayoutInflater layout = (LayoutInflater) getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = layout.inflate(R.layout.popupdescription, null);
-        TextView tv = (TextView) popupView.findViewById(R.id.textView);
-        tv.setText(detailssentback);
-        arrayadapter.notifyDataSetChanged();
 
         myDialog.setContentView(R.layout.popupdescription);
+        TextView tv = (TextView) myDialog.findViewById(R.id.textView);
+        tv.setText(detailssentback);
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        System.out.print("dss");
         myDialog.show();
-
-
-
 
     }
 
