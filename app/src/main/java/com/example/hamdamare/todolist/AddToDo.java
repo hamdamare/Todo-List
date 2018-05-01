@@ -19,6 +19,12 @@ import java.util.Date;
 
 
 public class AddToDo extends AppCompatActivity {
+    String name_str;
+    String comment_str;
+    String date_str;
+    EditText name;
+    EditText date;
+    EditText comment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +37,6 @@ public class AddToDo extends AppCompatActivity {
     public void getname(View view){
         Intent activitythatcalled = getIntent();
         String previousactivity = activitythatcalled.getExtras().getString("callingActivity","MainActivity");
-
 
         TextView callingctivitymessage = (TextView) findViewById(R.id.name);
         TextView callingctivitymessage3 = (TextView) findViewById(R.id.date);
@@ -47,16 +52,41 @@ public class AddToDo extends AppCompatActivity {
 
     //checking if input is in proper format
     public boolean Valid() {
-        EditText name = (EditText) (findViewById(R.id.name));
-        EditText comment = (EditText) (findViewById(R.id.Description));
-        EditText date = (EditText) (findViewById(R.id.date));
+        name = (EditText) (findViewById(R.id.name));
+        comment = (EditText) (findViewById(R.id.Description));
+        date = (EditText) (findViewById(R.id.date));
 
 
-        String name_str = name.getText().toString();
-        String comment_str = comment.getText().toString();
-        String date_str = date.getText().toString();
+        if (name != null) {
+            name_str = name.getText().toString();
+            System.out.println(name_str);
+        }
+        else {
+            name_str = "";
+        }
+
+
+
+        if (date != null) {
+            date_str = date.getText().toString();
+            System.out.println(date_str);
+        }
+        else {
+            date_str = "";
+        }
+
+
+
+        if (comment != null) {
+            comment_str = comment.getText().toString();
+            System.out.println(comment_str);
+        }
+        else {
+            comment_str= "";
+        }
 
         boolean valid = true;
+
 
 
         DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
@@ -85,12 +115,10 @@ public class AddToDo extends AppCompatActivity {
 
 
 
+
+
     //static variable newline to give you a new line
     public static String newline = System.getProperty("line.separator");
-
-    public void oneditlist(View view){
-
-    }
 
 
     //sending information to main activity

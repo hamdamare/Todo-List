@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
             Scanner scanner = new Scanner(openFileInput("ToDo.txt"));
             while(scanner.hasNextLine()){
                 String todo = scanner.nextLine();
-
                 arrayadapter.add(todo);
                 listviewtodo.setAdapter(arrayadapter);
 
@@ -143,15 +142,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        String namesentback = data.getStringExtra("everything");
+        String namesentback = data.getStringExtra("name");
         String detailssentback = data.getStringExtra("details");
         arraylist.add(namesentback);
+        System.out.println(namesentback);
 
         LayoutInflater layout = (LayoutInflater) getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = layout.inflate(R.layout.popupdescription, null);
         TextView tv = (TextView) popupView.findViewById(R.id.textView);
         tv.setText(detailssentback);
+
         arrayadapter.notifyDataSetChanged();
+
     }
 
 
