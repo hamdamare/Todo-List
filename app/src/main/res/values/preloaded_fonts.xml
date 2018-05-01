@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/</item>
+        <item>@font/aclonica</item>
+        <item>@font/adamina</item>
+        <item>@font/alfa_slab_one</item>
+        <item>@font/baloo_bhaina</item>
+        <item>@font/bevan</item>
+        <item>@font/bubblegum_sans</item>
+        <item>@font/butcherman</item>
+        <item>@font/cherry_cream_soda</item>
+        <item>@font/cinzel_decorative</item>
+        <item>@font/diplomata</item>
+        <item>@font/faster_one</item>
+        <item>@font/gravitas_one</item>
+        <item>@font/inknut_antiqua_light</item>
+        <item>@font/luckiest_guy</item>
+        <item>@font/russo_one</item>
+    </array>
+</resources>
